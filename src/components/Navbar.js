@@ -7,76 +7,103 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="h-screen w-64 bg-white shadow-lg">
-            <div className="flex items-center justify-center h-16 bg-gray-100">
-                <h1 className="text-xl font-bold">Naytshul</h1>
+        <nav className="min-h-screen w-64 bg-gray-100 shadow-sm flex flex-col justify-between font-sans lg:w-64 w-20">
+            <div>
+                <div className="flex items-center justify-center pt-6 pb-4 bg-gray-100">
+                    <img
+                    src='/only-logo.svg'
+                    className="mr-2"
+                    />
+                    <span className="lg:block hidden text-xl">Naytshul</span>
+                </div>
+                <ul className="mt-6 space-y-2">
+                    <li>
+                        <Link
+                            to="/"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            className="mr-2"
+                            src='/headlines.svg'
+                            />
+                            <span className="lg:block hidden">Headlines</span>
+                        </Link>
+                    </li>
+                    <li className="px-4 py-2 text-sm text-gray-400 lg:block hidden">
+                        Categories
+                    </li>
+                    <li>
+                        <Link
+                            to="/sports"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/sports') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            src='/sports.svg'
+                            className="mr-2"
+                            />
+                            <span className="lg:block hidden">Sports</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/education"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/education') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            src='/education.svg'
+                            className='mr-2'
+                            />
+                            <span className="lg:block hidden">Education</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/political"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/political') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            src='/political.svg'
+                            className='mr-2'
+                            />
+                            <span className="lg:block hidden">Political</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/science"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/science') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            src='/science.svg'
+                            className='mr-2'
+                            />
+                            <span className="lg:block hidden">Science & Technology</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/more"
+                            className={`flex items-center px-4 py-2 mx-2 ${isActive('/more') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                        >
+                            <img
+                            src='/more.svg'
+                            className='mr-2'
+                            />
+                            <span className="lg:block hidden">More</span>
+                        </Link>
+                    </li>
+                </ul>
             </div>
-            <ul className="mt-6 space-y-2">
-                <li>
-                    <Link
-                        to="/"
-                        className={`flex items-center px-4 py-2 ${isActive('/') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">📰</span>
-                        Headlines
-                    </Link>
-                </li>
-                <li className="px-4 py-2 text-sm text-gray-400">
-                    Categories
-                </li>
-                <li>
-                    <Link
-                        to="/sports"
-                        className={`flex items-center px-4 py-2 ${isActive('/sports') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">⚽</span>
-                        Sports
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/education"
-                        className={`flex items-center px-4 py-2 ${isActive('/education') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">🎓</span>
-                        Education
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/political"
-                        className={`flex items-center px-4 py-2 ${isActive('/political') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">🏛️</span>
-                        Political
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/science"
-                        className={`flex items-center px-4 py-2 ${isActive('/science') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">🔬</span>
-                        Science & Technology
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        to="/more"
-                        className={`flex items-center px-4 py-2 ${isActive('/more') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
-                    >
-                        <span className="mr-2">...</span>
-                        More
-                    </Link>
-                </li>
-            </ul>
-            <div className="mt-auto p-4">
+            <div className="mb-4">
                 <Link
                     to="/signout"
-                    className={`flex items-center px-4 py-2 ${isActive('/signout') ? 'bg-green-300 text-white' : 'text-gray-600 hover:bg-gray-200'}`}
+                    className={`flex items-center px-4 py-2 mx-2 ${isActive('/signout') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                 >
-                    <span className="mr-2">↩️</span>
-                    Sign Out
+                    <img
+                        src='/signout.svg'
+                        className='mr-2'
+                    />
+                    <span className="lg:block hidden">Sign Out</span>
                 </Link>
             </div>
         </nav>

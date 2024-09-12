@@ -1,24 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Headlines from './pages/Headlines';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Sports from './pages/Sports';
 import Education from './pages/Education';
 import Political from './pages/Political';
 import Science from './pages/Science';
 import More from './pages/More';
+import Login from './pages/Login';
 
-function App() {
+function Layout() {
+  const location = useLocation();
+
+  // Render the Navbar and Header only if not on the login page
+  const hideLayout = location.pathname === '/login';
+
   return (
-    <Router>
-      {/* Use flexbox to create a side-by-side layout */}
-      <div className="flex">
-        {/* Side Navbar */}
-        <Navbar />
-
-        {/* Main content area */}
-        <div className="flex-1 p-6">
+    <div className="flex">
+      {!hideLayout && <Navbar />} {/* Conditionally hide Navbar */}
+      
+      <div className="flex-1">
+        {!hideLayout && <Header />} {/* Conditionally hide Header */}
+        
+        <div className="p-4">
           <Routes>
             <Route path="/" element={<Headlines />} />
             <Route path="/profile" element={<Profile />} />
@@ -30,6 +36,20 @@ function App() {
           </Routes>
         </div>
       </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Login route without sidebar and header */}
+        <Route path="/login" element={<Login />} />
+        
+        {/* Other routes with layout */}
+        <Route path="/*" element={<Layout />} />
+      </Routes>
     </Router>
   );
 }
