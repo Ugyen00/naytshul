@@ -45,7 +45,7 @@ const Headlines = ({ news }) => {
     };
 
     return (
-        <div className="flex flex-col items-center bg-gray-100 py-16">
+        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-20">
             <div className="flex flex-wrap justify-center">
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
@@ -116,7 +116,7 @@ const newsData = [
         source: "Cable News Network",
         sourceImage: "/cnn.png",
         title: "Trump's hardline new quest to destroy Harris' momentum",
-        image: "/cnn1.png",
+        image: "/cnn1.webp",
         description:
             "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
         likes: "1.3K",
@@ -139,7 +139,7 @@ const newsData = [
         source: "Cable News Network",
         sourceImage: "/cnn.png",
         title: "Trump's hardline new quest to destroy Harris' momentum",
-        image: "/cnn1.png",
+        image: "/cnn1.webp",
         description:
             "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
         likes: "1.3K",

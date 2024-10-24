@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="px-12 pb-2 pt-8 flex justify-between">
+    <header className="px-12 pb-2 pt-8 flex justify-between lg:ml-64 ml-20">
       <div className='flex items-center'>
         <div className="relative flex items-center w-[600px]">
           <input

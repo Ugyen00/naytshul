@@ -45,7 +45,7 @@ const Sports = ({ news }) => {
     };
 
     return (
-        <div className="flex flex-col items-center bg-gray-100 py-16">
+        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-20">
             <div className="flex flex-wrap justify-center">
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">

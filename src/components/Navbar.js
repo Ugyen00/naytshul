@@ -7,7 +7,7 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="min-h-screen w-64 bg-gray-100 shadow-sm flex flex-col justify-between font-sans lg:w-64 w-20">
+        <nav className="fixed h-screen w-64 bg-gray-100 shadow-sm flex flex-col justify-between font-sans lg:w-64 w-20">
             <div>
                 <div className="flex items-center justify-center pt-6 pb-4 bg-gray-100">
                     <img
