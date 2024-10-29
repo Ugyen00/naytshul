@@ -11,8 +11,8 @@ const Navbar = () => {
             <div>
                 <div className="flex items-center justify-center pt-6 pb-4 bg-gray-100">
                     <img
-                    src='/only-logo.svg'
-                    className="mr-2"
+                        src='/only-logo.svg'
+                        className="mr-2"
                     />
                     <span className="lg:block hidden text-xl">Naytshul</span>
                 </div>
@@ -23,8 +23,8 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            className="mr-2"
-                            src='/headlines.svg'
+                                className="mr-2"
+                                src='/headlines.svg'
                             />
                             <span className="lg:block hidden">Headlines</span>
                         </Link>
@@ -38,8 +38,8 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/sports') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            src='/sports.svg'
-                            className="mr-2"
+                                src='/sports.svg'
+                                className="mr-2"
                             />
                             <span className="lg:block hidden">Sports</span>
                         </Link>
@@ -50,8 +50,8 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/education') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            src='/education.svg'
-                            className='mr-2'
+                                src='/education.svg'
+                                className='mr-2'
                             />
                             <span className="lg:block hidden">Education</span>
                         </Link>
@@ -62,8 +62,8 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/political') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            src='/political.svg'
-                            className='mr-2'
+                                src='/political.svg'
+                                className='mr-2'
                             />
                             <span className="lg:block hidden">Political</span>
                         </Link>
@@ -74,8 +74,8 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/science') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            src='/science.svg'
-                            className='mr-2'
+                                src='/science.svg'
+                                className='mr-2'
                             />
                             <span className="lg:block hidden">Science & Technology</span>
                         </Link>
@@ -86,25 +86,13 @@ const Navbar = () => {
                             className={`flex items-center px-4 py-2 mx-2 ${isActive('/more') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                         >
                             <img
-                            src='/more.svg'
-                            className='mr-2'
+                                src='/more.svg'
+                                className='mr-2'
                             />
                             <span className="lg:block hidden">More</span>
                         </Link>
                     </li>
                 </ul>
-            </div>
-            <div className="mb-4">
-                <Link
-                    to="/signout"
-                    className={`flex items-center px-4 py-2 mx-2 ${isActive('/signout') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
-                >
-                    <img
-                        src='/signout.svg'
-                        className='mr-2'
-                    />
-                    <span className="lg:block hidden">Sign Out</span>
-                </Link>
             </div>
         </nav>
     );

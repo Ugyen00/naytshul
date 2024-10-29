@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useUser, UserButton } from '@clerk/clerk-react';
 
 const Header = () => {
+  const { isSignedIn } = useUser(); // Check if the user is signed in
+
   return (
     <header className="px-12 pb-2 pt-8 flex justify-between lg:ml-64 ml-20">
-      <div className='flex items-center'>
+      <div className="flex items-center">
         <div className="relative flex items-center w-[600px]">
           <input
             type="text"
@@ -18,16 +21,30 @@ const Header = () => {
           />
         </div>
         <img
-          src='/filter.svg'
+          src="/filter.svg"
           alt="Filter"
-          className='pt-1 pl-2 cursor-pointer'
+          className="pt-1 pl-2 cursor-pointer"
         />
       </div>
-      <Link
-      to="/login"
-      >
-        <button className='text-white bg-[#66C564] py-2 px-6 rounded-md'>LOGIN</button>
-      </Link>
+
+      {/* Conditional rendering based on login status */}
+      {!isSignedIn ? (
+        <Link to="/login">
+          <button className="text-white bg-[#66C564] py-2 px-6 rounded-md">
+            LOGIN
+          </button>
+        </Link>
+      ) : (
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "w-10 h-10",
+              userButton: "flex items-center",
+            },
+          }}
+        />
+      )}
     </header>
   );
 };
