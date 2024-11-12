@@ -45,33 +45,33 @@ const Headlines = ({ news }) => {
     };
 
     return (
-        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-20">
+        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-8">
             <div className="flex flex-wrap justify-center">
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
                         <div className="pt-4 px-8">
-                        <div className="flex justify-between items-center">
-                                <div className="flex space-x-2">
-                                    <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
-                                    <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
-                                </div>
-                                <div className="text-sm text-gray-400">
-                                    {new Date(article.date).toLocaleString('en-US', {
-                                        weekday: 'short',
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                    })}
-                                </div>
+                            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+                                    <div className="flex space-x-2">
+                                        <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
+                                        <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                                    </div>
+                                    <div className="text-sm text-gray-400">
+                                        {new Date(article.date).toLocaleString('en-US', {
+                                            weekday: 'short',
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                        })}
+                                    </div>
                             </div>
                             <h3 className="text-lg font-bold mt-1 mb-4">{article.title}</h3>
-                            <div className="flex space-x-8">
-                                <div className="relative w-1/2">
+                            <div className="flex flex-col lg:flex-row lg:space-x-8">
+                                <div className="relative w-full lg:w-1/2">
                                     <img src={article.image} alt="Article Image" className="w-full h-64 object-cover" />
                                 </div>
-                                <p className="mt-2 text-sm w-1/2">{article.description}</p>
+                                <p className="mt-2 text-sm w-full lg:w-1/2">{article.description}</p>
                             </div>
                         </div>
                         <div className="flex items-center justify-end p-4">

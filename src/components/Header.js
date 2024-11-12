@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { useUser, UserButton } from '@clerk/clerk-react';
 
 const Header = () => {
-  const { isSignedIn } = useUser(); // Check if the user is signed in
+  const { isSignedIn } = useUser();
 
   return (
-    <header className="px-12 pb-2 pt-8 flex justify-between lg:ml-64 ml-20">
-      <div className="flex items-center">
-        <div className="relative flex items-center w-[600px]">
+    <header className="px-2 lg:px-12 pb-2 pt-4 lg:pt-8 flex flex-col lg:flex-row items-center justify-between lg:ml-64 ml-12">
+      <div className="flex items-center w-full lg:w-auto mb-4 lg:mb-0">
+        <div className="relative flex items-center w-full lg:w-[600px]">
           <input
             type="text"
             placeholder="Search for news"
@@ -23,28 +23,30 @@ const Header = () => {
         <img
           src="/filter.svg"
           alt="Filter"
-          className="pt-1 pl-2 cursor-pointer"
+          className="ml-2 w-6 h-6 cursor-pointer hidden lg:block"
         />
       </div>
 
       {/* Conditional rendering based on login status */}
-      {!isSignedIn ? (
-        <Link to="/login">
-          <button className="text-white bg-[#66C564] py-2 px-6 rounded-md">
-            LOGIN
-          </button>
-        </Link>
-      ) : (
-        <UserButton
-          afterSignOutUrl="/"
-          appearance={{
-            elements: {
-              avatarBox: "w-10 h-10",
-              userButton: "flex items-center",
-            },
-          }}
-        />
-      )}
+      <div className="flex items-center">
+        {!isSignedIn ? (
+          <Link to="/login">
+            <button className="text-white bg-[#66C564] py-2 px-4 lg:px-6 rounded-md w-full lg:w-auto">
+              LOGIN
+            </button>
+          </Link>
+        ) : (
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10",
+                userButton: "flex items-center",
+              },
+            }}
+          />
+        )}
+      </div>
     </header>
   );
 };

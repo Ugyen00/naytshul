@@ -45,33 +45,33 @@ const Political = ({ news }) => {
     };
 
     return (
-        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-20">
+        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-8">
             <div className="flex flex-wrap justify-center">
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
                         <div className="pt-4 px-8">
-                            <div className="flex justify-between items-center">
-                                <div className="flex space-x-2">
-                                    <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
-                                    <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
-                                </div>
-                                <div className="text-sm text-gray-400">
-                                    {new Date(article.date).toLocaleString('en-US', {
-                                        weekday: 'short',
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                    })}
-                                </div>
+                            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+                                    <div className="flex space-x-2">
+                                        <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
+                                        <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                                    </div>
+                                    <div className="text-sm text-gray-400">
+                                        {new Date(article.date).toLocaleString('en-US', {
+                                            weekday: 'short',
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                        })}
+                                    </div>
                             </div>
                             <h3 className="text-lg font-bold mt-1 mb-4">{article.title}</h3>
-                            <div className="flex space-x-8">
-                                <div className="relative w-1/2">
+                            <div className="flex flex-col lg:flex-row lg:space-x-8">
+                                <div className="relative w-full lg:w-1/2">
                                     <img src={article.image} alt="Article Image" className="w-full h-64 object-cover" />
                                 </div>
-                                <p className="mt-2 text-sm w-1/2">{article.description}</p>
+                                <p className="mt-2 text-sm w-full lg:w-1/2">{article.description}</p>
                             </div>
                         </div>
                         <div className="flex items-center justify-end p-4">
@@ -122,7 +122,7 @@ const Political = ({ news }) => {
     );
 };
 
-// Example news data array with unique dates
+// Example news data array
 const newsData = [
     {
         source: "Cable News Network",
@@ -132,7 +132,7 @@ const newsData = [
         description:
             "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
         likes: "1.3K",
-        date: "2024-11-10T14:30:00", 
+        date: "2024-11-10T14:30:00",
         comments: [
             {
                 username: "Ugyen Dendup",
@@ -151,11 +151,11 @@ const newsData = [
     {
         source: "Cable News Network",
         sourceImage: "/cnn.png",
-        title: "New tax reform bill proposed in Congress",
+        title: "Trump's hardline new quest to destroy Harris' momentum",
         image: "/cnn1.webp",
         description:
-            "Lawmakers are working on a new tax reform bill that aims to simplify the tax code and lower rates for middle-income families. The proposal is expected to face significant debate...",
-        likes: "980",
+            "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
+        likes: "1.3K",
         date: "2024-11-09T10:15:00",
         comments: [
             {
@@ -172,7 +172,7 @@ const newsData = [
             }
         ]
     },
-    // Add more articles here with unique date values for testing
+    // Add more articles here for testing
 ];
 
 export default function App() {
