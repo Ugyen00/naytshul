@@ -50,9 +50,21 @@ const Sports = ({ news }) => {
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
                         <div className="pt-4 px-8">
-                            <div className="flex space-x-2">
-                                <img src={article.sourceImage} alt="News Image" className="w-8 h-8 rounded-full" />
-                                <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                        <div className="flex justify-between items-center">
+                                <div className="flex space-x-2">
+                                    <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
+                                    <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                                </div>
+                                <div className="text-sm text-gray-400">
+                                    {new Date(article.date).toLocaleString('en-US', {
+                                        weekday: 'short',
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                    })}
+                                </div>
                             </div>
                             <h3 className="text-lg font-bold mt-1 mb-4">{article.title}</h3>
                             <div className="flex space-x-8">
@@ -120,6 +132,7 @@ const newsData = [
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...",
         likes: "1.3K",
+        date: "2024-11-10T14:30:00",
         comments: [
             {
                 username: "Ugyen Dendup",
@@ -143,6 +156,7 @@ const newsData = [
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...",
         likes: "1.3K",
+        date: "2024-11-09T10:15:00",
         comments: [
             {
                 username: "Gaurav Sharma",

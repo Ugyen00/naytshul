@@ -50,9 +50,21 @@ const Political = ({ news }) => {
                 {currentArticles.map((article, index) => (
                     <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
                         <div className="pt-4 px-8">
-                            <div className="flex space-x-2">
-                                <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
-                                <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                            <div className="flex justify-between items-center">
+                                <div className="flex space-x-2">
+                                    <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
+                                    <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
+                                </div>
+                                <div className="text-sm text-gray-400">
+                                    {new Date(article.date).toLocaleString('en-US', {
+                                        weekday: 'short',
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                    })}
+                                </div>
                             </div>
                             <h3 className="text-lg font-bold mt-1 mb-4">{article.title}</h3>
                             <div className="flex space-x-8">
@@ -110,7 +122,7 @@ const Political = ({ news }) => {
     );
 };
 
-// Example news data array
+// Example news data array with unique dates
 const newsData = [
     {
         source: "Cable News Network",
@@ -120,6 +132,7 @@ const newsData = [
         description:
             "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
         likes: "1.3K",
+        date: "2024-11-10T14:30:00", 
         comments: [
             {
                 username: "Ugyen Dendup",
@@ -138,11 +151,12 @@ const newsData = [
     {
         source: "Cable News Network",
         sourceImage: "/cnn.png",
-        title: "Trump's hardline new quest to destroy Harris' momentum",
+        title: "New tax reform bill proposed in Congress",
         image: "/cnn1.webp",
         description:
-            "Donald Trump is trying to crush Democratic nominee Kamala Harris’ persona as a force of change and to destroy her personal credibility as a potential president as their still-fresh competition careens into the final nine weeks before Election Day. In recent days, the ex-president has unveiled a broad assault using the insult-driven politics with which he won power in 2016, even as his advisers have been pleading with him to focus his attention on top voter concerns including high prices and immigration...",
-        likes: "1.3K",
+            "Lawmakers are working on a new tax reform bill that aims to simplify the tax code and lower rates for middle-income families. The proposal is expected to face significant debate...",
+        likes: "980",
+        date: "2024-11-09T10:15:00",
         comments: [
             {
                 username: "Gaurav Sharma",
@@ -158,7 +172,7 @@ const newsData = [
             }
         ]
     },
-    // Add more articles here for testing
+    // Add more articles here with unique date values for testing
 ];
 
 export default function App() {
