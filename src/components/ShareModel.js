@@ -25,8 +25,8 @@ const ShareModal = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed text-md text-black inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white rounded-lg p-8 w-[500px] relative">
+        <div className="fixed text-md text-black inset-0 flex items-center justify-center bg-black bg-opacity-20">
+            <div className="bg-white rounded-lg p-8 ml-50 w-[500px] relative">
                 <button onClick={onClose} className="absolute top-4 right-4">
                     <FiX size={24} />
                 </button>

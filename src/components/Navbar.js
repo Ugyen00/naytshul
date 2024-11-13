@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useUser, UserButton } from '@clerk/clerk-react';
 
 const Navbar = () => {
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
-
+    const { isSignedIn } = useUser();
     const isActive = (path) => location.pathname === path;
 
     const toggleSidebar = () => {
@@ -76,6 +77,27 @@ const Navbar = () => {
                             </Link>
                         </li>
                     </ul>
+                    <div className="fixed bottom-0 w-full bg-gray-100 py-4">
+                        <div className="flex items-center justify-left px-6">
+                            {!isSignedIn ? (
+                                <Link to="/login">
+                                    <button className="text-white bg-[#66C564] py-2 px-4 lg:px-6 rounded-md w-full lg:w-auto">
+                                        LOGIN
+                                    </button>
+                                </Link>
+                            ) : (
+                                <UserButton
+                                    afterSignOutUrl="/"
+                                    appearance={{
+                                        elements: {
+                                            avatarBox: "w-10 h-10",
+                                            userButton: "flex items-center",
+                                        },
+                                    }}
+                                />
+                            )}
+                        </div>
+                    </div>
                 </div>
             </nav>
 

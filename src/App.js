@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 import Headlines from './pages/Headlines';
@@ -9,18 +9,15 @@ import Sports from './pages/Sports';
 import Education from './pages/Health';
 import Political from './pages/Business';
 import Science from './pages/Technology';
+import Search from './pages/SearchResults';
 
 function Layout() {
-  const location = useLocation();
-
   // Render the Navbar and Header for all pages, including '/login' for a consistent layout
   return (
     <div className="flex">
       <Navbar /> {/* Navbar is always displayed */}
 
       <div className="flex-1">
-        <Header /> {/* Header is always displayed */}
-
         <div className="p-4">
           <Routes>
             <Route path="/" element={<Headlines />} />
@@ -43,6 +40,11 @@ function Layout() {
             <Route path="/technology" element={
               <SignedIn>
                 <Science />
+              </SignedIn>
+            } />
+            <Route path="/search-results" element={
+              <SignedIn>
+                <Search />
               </SignedIn>
             } />
             {/* Redirect any unknown routes to the Headlines page */}
