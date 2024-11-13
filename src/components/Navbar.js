@@ -50,38 +50,29 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                to="/education"
-                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/education') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                                to="/health"
+                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/health') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                             >
                                 <img src='/education.svg' className="mr-2" alt="Education" />
-                                <span className="lg:block hidden">Education</span>
+                                <span className="lg:block hidden">Health</span>
                             </Link>
                         </li>
                         <li>
                             <Link
-                                to="/political"
-                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/political') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                                to="/business"
+                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/business') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                             >
                                 <img src='/political.svg' className="mr-2" alt="Political" />
-                                <span className="lg:block hidden">Political</span>
+                                <span className="lg:block hidden">Business</span>
                             </Link>
                         </li>
                         <li>
                             <Link
-                                to="/science"
-                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/science') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
+                                to="/technology"
+                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/technology') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
                             >
-                                <img src='/science.svg' className="mr-2" alt="Science & Technology" />
-                                <span className="lg:block hidden">Science & Technology</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/more"
-                                className={`flex items-center px-4 py-2 mx-2 ${isActive('/more') ? 'bg-[#66C564] rounded-[8px]' : 'text-gray-600 hover:bg-gray-200'}`}
-                            >
-                                <img src='/more.svg' className="mr-2" alt="More" />
-                                <span className="lg:block hidden">More</span>
+                                <img src='/science.svg' className="mr-2" alt="Technology" />
+                                <span className="lg:block hidden">Technology</span>
                             </Link>
                         </li>
                     </ul>

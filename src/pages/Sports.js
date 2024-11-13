@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaHeart } from '@react-icons/all-files/fa/FaHeart';
 import { FiHeart, FiMessageCircle, FiShare2 } from 'react-icons/fi';
-import CommentSection from '../components/Comment';
-import ShareModal from '../components/ShareModel';
+import CommentSection from '../components/Comment';  // Adjust the path as needed
+import ShareModal from '../components/ShareModel';  // Adjust the path as needed
 
-const Sports = ({ news }) => {
+const Sports = () => {
+    const [sportsNews, setSportsNews] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [likedArticles, setLikedArticles] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedArticle, setSelectedArticle] = useState(null);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const articlesPerPage = 5;
+
+    useEffect(() => {
+        const fetchSportsNews = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/sports');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setSportsNews(data);
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchSportsNews();
+    }, []);
 
     const handleHeartClick = (index) => {
         setLikedArticles((prevState) => ({
@@ -28,9 +50,9 @@ const Sports = ({ news }) => {
 
     const indexOfLastArticle = currentPage * articlesPerPage;
     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-    const currentArticles = news.slice(indexOfFirstArticle, indexOfLastArticle);
+    const currentArticles = sportsNews.slice(indexOfFirstArticle, indexOfLastArticle);
 
-    const totalPages = Math.ceil(news.length / articlesPerPage);
+    const totalPages = Math.ceil(sportsNews.length / articlesPerPage);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -44,137 +66,78 @@ const Sports = ({ news }) => {
         }
     };
 
+    if (loading) {
+        return <div className="text-center mt-10 text-lg">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center mt-10 text-red-600">Error: {error}</div>;
+    }
+
     return (
-        <div className="flex flex-col items-center bg-gray-100 py-16 lg:ml-64 ml-8">
-            <div className="flex flex-wrap justify-center">
-                {currentArticles.map((article, index) => (
-                    <div key={index} className="flex flex-col w-auto h-5xl mx-8 bg-[#292929] text-white rounded-lg mb-8">
-                        <div className="pt-4 px-8">
-                            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-                                    <div className="flex space-x-2">
-                                        <img src={article.sourceImage} alt="News Image" className="w-8 h-8" />
-                                        <h2 className="text-sm font-medium text-white pt-2">{article.source}</h2>
-                                    </div>
-                                    <div className="text-sm text-gray-400">
-                                        {new Date(article.date).toLocaleString('en-US', {
-                                            weekday: 'short',
-                                            year: 'numeric',
-                                            month: 'short',
-                                            day: 'numeric',
-                                            hour: '2-digit',
-                                            minute: '2-digit',
-                                        })}
-                                    </div>
-                            </div>
-                            <h3 className="text-lg font-bold mt-1 mb-4">{article.title}</h3>
-                            <div className="flex flex-col lg:flex-row lg:space-x-8">
-                                <div className="relative w-full lg:w-1/2">
-                                    <img src={article.image} alt="Article Image" className="w-full h-64 object-cover" />
-                                </div>
-                                <p className="mt-2 text-sm w-full lg:w-1/2">{article.description}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-end p-4">
-                            <span className="text-sm mr-2">{article.likes}</span>
+        <div className="container mx-auto p-4 ml-64 max-w-5xl">
+            <h1 className="text-3xl font-bold mb-6 text-left">Sports News</h1>
+            {currentArticles.length === 0 ? (
+                <p className="text-center text-gray-500">No sports news found.</p>
+            ) : (
+                currentArticles.map((article, index) => (
+                    <div key={index} className="p-4 bg-white rounded shadow-md mb-6">
+                        {article.urlToImage && (
+                            <img
+                                src={article.urlToImage}
+                                alt={article.title}
+                                className="w-full h-64 object-cover mb-4 rounded"
+                            />
+                        )}
+                        <h2 className="text-2xl font-semibold mb-2">{article.title}</h2>
+                        <p className="text-gray-700 mb-4">{article.description}</p>
+                        <a
+                            href={article.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                        >
+                            Read more
+                        </a>
+                        <p className="text-sm text-gray-500 mt-2">
+                            <strong>Published at:</strong> {new Date(article.publishedAt).toLocaleString()}
+                        </p>
+                        <div className="flex items-center mt-4">
                             <button
                                 onClick={() => handleHeartClick(index)}
-                                className="text-[#DEBCF4]"
+                                className="text-red-500 mr-4"
                             >
                                 {likedArticles[index] ? <FaHeart /> : <FiHeart />}
                             </button>
                             <button
                                 onClick={() => handleCommentClick(index)}
-                                className="ml-4 text-[#DEBCF4]"
+                                className="text-gray-600 mr-4"
                             >
                                 <FiMessageCircle />
                             </button>
-                            <button onClick={handleShareClick} className="ml-4 text-[#DEBCF4]">
+                            <button onClick={handleShareClick} className="text-gray-600">
                                 <FiShare2 />
                             </button>
                         </div>
-                        {selectedArticle === index && (
-                            <CommentSection comments={article.comments} onClose={() => setSelectedArticle(null)} />
-                        )}
+                        {selectedArticle === index && <CommentSection articleId={index} />}
                     </div>
-                ))}
-            </div>
-            <div className="flex justify-center mt-8 items-center">
-                <button
-                    onClick={handlePreviousPage}
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 mx-2 rounded ${currentPage === 1 ? 'bg-gray-400' : 'bg-[#66C564]'} text-white`}
-                >
-                    &lt;
+                ))
+            )}
+            <div className="flex justify-between mt-6">
+                <button onClick={handlePreviousPage} disabled={currentPage === 1} className="bg-gray-200 px-4 py-2 rounded">
+                    Previous
                 </button>
-                <span className="text-lg mx-4">{currentPage} of {totalPages}</span>
                 <button
                     onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 mx-2 rounded ${currentPage === totalPages ? 'bg-gray-400' : 'bg-[#66C564]'} text-white`}
+                    disabled={currentPage >= Math.ceil(sportsNews.length / articlesPerPage)}
+                    className="bg-gray-200 px-4 py-2 rounded"
                 >
-                    &gt;
+                    Next
                 </button>
             </div>
-            {isShareModalOpen && (
-                <ShareModal onClose={() => setIsShareModalOpen(false)} />
-            )}
+            {isShareModalOpen && <ShareModal onClose={() => setIsShareModalOpen(false)} />}
         </div>
     );
 };
 
-// Example news data array
-const newsData = [
-    {
-        source: "Columbia Broadcasting System",
-        sourceImage: "/cbs.jpg",
-        title: "Olympian Katie Ledecky hopes to inspire young swimmers as she aims for 2028 Los Angeles Games",
-        image: "/cbs1.avif",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...",
-        likes: "1.3K",
-        date: "2024-11-10T14:30:00",
-        comments: [
-            {
-                username: "Ugyen Dendup",
-                userImage: "/user1.png",
-                time: "5 mins ago",
-                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-            },
-            {
-                username: "John Doe",
-                userImage: "/user1.png",
-                time: "10 mins ago",
-                text: "This is an interesting development. I wonder how it will affect the upcoming elections."
-            }
-        ]
-    },
-    {
-        source: "Columbia Broadcasting System",
-        sourceImage: "/cbs.jpg",
-        title: "Olympian Katie Ledecky hopes to inspire young swimmers as she aims for 2028 Los Angeles Games",
-        image: "/cbs1.avif",
-        description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries...",
-        likes: "1.3K",
-        date: "2024-11-09T10:15:00",
-        comments: [
-            {
-                username: "Gaurav Sharma",
-                userImage: "/user1.png",
-                time: "5 mins ago",
-                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-            },
-            {
-                username: "John Doe",
-                userImage: "/user1.png",
-                time: "10 mins ago",
-                text: "This is an interesting development. I wonder how it will affect the upcoming elections."
-            }
-        ]
-    },
-    // Add more articles here for testing
-];
-
-export default function App() {
-    return <Sports news={newsData} />;
-}
+export default Sports;

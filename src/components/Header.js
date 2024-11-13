@@ -20,11 +20,6 @@ const Header = () => {
             className="absolute left-3 w-5 h-5 text-gray-400 cursor-pointer"
           />
         </div>
-        <img
-          src="/filter.svg"
-          alt="Filter"
-          className="ml-2 w-6 h-6 cursor-pointer hidden lg:block"
-        />
       </div>
 
       {/* Conditional rendering based on login status */}

@@ -4,7 +4,7 @@ import { FiHeart, FiMessageCircle, FiShare2 } from 'react-icons/fi';
 import CommentSection from '../components/CommentModel'; // Adjust the path as needed
 import ShareModal from '../components/ShareModel'; // Adjust the path as needed
 
-function Headlines() {
+function Health() {
     const [headlines, setHeadlines] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -17,15 +17,15 @@ function Headlines() {
     useEffect(() => {
         const fetchHeadlines = async () => {
             try {
-                const response = await fetch('http://localhost:3001/headlines');
+                const response = await fetch('http://localhost:3001/health');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
                 setHeadlines(data);
-                setLoading(false);
             } catch (err) {
                 setError(err.message);
+            } finally {
                 setLoading(false);
             }
         };
@@ -64,17 +64,12 @@ function Headlines() {
         }
     };
 
-    if (loading) {
-        return <div className="text-center mt-10 text-lg">Loading...</div>;
-    }
-
-    if (error) {
-        return <div className="text-center mt-10 text-red-600">Error: {error}</div>;
-    }
+    if (loading) return <div className="text-center mt-10 text-lg">Loading...</div>;
+    if (error) return <div className="text-center mt-10 text-red-600">Error: {error}</div>;
 
     return (
         <div className="container mx-auto p-4 ml-64 max-w-5xl"> {/* Set max-width for news area */}
-            <h1 className="text-3xl font-bold mb-6 text-left">Top Headlines</h1>
+            <h1 className="text-3xl font-bold mb-6 text-left">Health News</h1>
             {currentArticles.length === 0 ? (
                 <p className="text-center text-gray-500">No headlines found.</p>
             ) : (
@@ -134,4 +129,4 @@ function Headlines() {
     );
 }
 
-export default Headlines;
+export default Health;

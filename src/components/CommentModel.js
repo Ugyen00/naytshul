@@ -1,34 +1,45 @@
-// CommentModal Component
 import React, { useState } from 'react';
 import { FiX } from 'react-icons/fi';
 
-const CommentModal = ({ onClose, onSave }) => {
+const CommentModal = ({ onClose, onSave, user }) => {
     const [comment, setComment] = useState('');
+    const [isOpen, setIsOpen] = useState(true); // Modal visibility state
 
     const handleSave = () => {
         if (comment.trim()) {
-            onSave(comment);
+            onSave(comment); // Save the comment
             setComment('');
-            onClose();
+            handleClose(); // Close the modal after saving comment
         }
     };
+
+    const handleClose = () => {
+        setIsOpen(false); // Close the modal
+        if (onClose) {
+            onClose(); // Trigger the parent's onClose function if passed
+        }
+    };
+
+    if (!isOpen) {
+        return null; // Do not render the modal if it's closed
+    }
 
     return (
         <div className="fixed text-black inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white rounded-lg p-8 w-[500px] relative">
                 {/* Close button */}
-                <button onClick={onClose} className="absolute top-4 right-4">
+                <button onClick={handleClose} className="absolute top-4 right-4">
                     <FiX size={24} />
                 </button>
 
                 {/* User Info */}
                 <div className="flex items-center mb-4">
                     <img
-                        src="/user1.png" // Replace with dynamic user image if needed
+                        src={user?.profileImageUrl || '/default-user.png'}
                         alt="User"
                         className="w-12 h-12 rounded-full mr-4"
                     />
-                    <h2 className="text-lg font-semibold">Ugyen Dendup</h2>
+                    <h2 className="text-lg font-semibold">{user?.name || 'Anonymous User'}</h2>
                 </div>
 
                 {/* Comment Textarea */}

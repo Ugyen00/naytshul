@@ -3,14 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'r
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 import Headlines from './pages/Headlines';
-import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Sports from './pages/Sports';
-import Education from './pages/Education';
-import Political from './pages/Political';
-import Science from './pages/Science';
-import More from './pages/More';
+import Education from './pages/Health';
+import Political from './pages/Business';
+import Science from './pages/Technology';
 
 function Layout() {
   const location = useLocation();
@@ -27,34 +25,24 @@ function Layout() {
           <Routes>
             <Route path="/" element={<Headlines />} />
             {/* Protect other routes using Clerk's SignedIn component */}
-            <Route path="/profile" element={
-              <SignedIn>
-                <Profile />
-              </SignedIn>
-            } />
             <Route path="/sports" element={
               <SignedIn>
                 <Sports />
               </SignedIn>
             } />
-            <Route path="/education" element={
+            <Route path="/health" element={
               <SignedIn>
                 <Education />
               </SignedIn>
             } />
-            <Route path="/political" element={
+            <Route path="/business" element={
               <SignedIn>
                 <Political />
               </SignedIn>
             } />
-            <Route path="/science" element={
+            <Route path="/technology" element={
               <SignedIn>
                 <Science />
-              </SignedIn>
-            } />
-            <Route path="/more" element={
-              <SignedIn>
-                <More />
               </SignedIn>
             } />
             {/* Redirect any unknown routes to the Headlines page */}
